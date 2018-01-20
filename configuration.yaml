@@ -14,12 +14,12 @@ homeassistant:
 #       switch.*:
 #         custom_ui_state_card: custom-ui
 frontend:
+     javascript_version: es5
 #    themes:
 #     default:
 #      primary-color: #C9A89D
 
 config:
-cloud:
 sun:
 ios:
 map:
@@ -94,7 +94,6 @@ axis:
     password: !secret axis_password
     include:
     - camera
-    - vmd3
     trigger_time: 0
     location: Entre
   cam_parkering:
@@ -119,20 +118,15 @@ axis:
     password: !secret axis_password
     include:
     - camera
-    - motion
     trigger_time: 0
-    location: Altan
+    location: Parkering
 
 notify:
    - name: notify_ios
      platform: group
      services:
        - service: ios_johans_iphone
-   - name: notify_jc
-     platform: group
-     services:
-       - service: ios_johans_iphone
-       - service: ios_cecilias_iphone
+
 
 device_tracker:
    - platform: unifi
@@ -177,7 +171,6 @@ binary_sensor:
     - platform: knx
       name: badrum_motion
       address: '3/6/8'
-
 
 script: !include scripts.yaml
 scene: !include scene.yaml

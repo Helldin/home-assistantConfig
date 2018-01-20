@@ -1,18 +1,17 @@
-   - platform: google_travel_time
-     name: restid_j
-     api_key: !secret google_token
-     origin: device_tracker.homeassistant_johan
-     destination: zone.home
-   - platform: google_travel_time
-     name: restid_c
-     api_key: !secret google_token
-     origin: device_tracker.homeassistant_cicci
-     destination: zone.home
-   - platform: google_travel_time
-     name: restid_m
-     api_key: !secret google_token
-     origin: device_tracker.homeassistant_max
-     destination: zone.home
+#   - platform: google_travel_time
+#     name: restid_j
+#     api_key: !secret google_token
+#     origin: device_tracker.homeassistant_johan
+#     destination: zone.home
+#   - platform: google_travel_time
+#     name: restid_c
+#     origin: device_tracker.homeassistant_cicci
+#     destination: zone.home
+#   - platform: google_travel_time
+#     name: restid_m
+#     api_key: !secret google_token
+#     origin: device_tracker.homeassistant_max
+#     destination: zone.home
 
 #Väder
 #   - platform: yr
