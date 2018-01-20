@@ -1,16 +1,16 @@
    - platform: google_travel_time
      name: restid_j
-     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     api_key: !secret google_token
      origin: device_tracker.homeassistant_johan
      destination: zone.home
    - platform: google_travel_time
      name: restid_c
-     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     api_key: !secret google_token
      origin: device_tracker.homeassistant_cicci
      destination: zone.home
    - platform: google_travel_time
      name: restid_m
-     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     api_key: !secret google_token
      origin: device_tracker.homeassistant_max
      destination: zone.home
 
@@ -105,7 +105,7 @@
      type: 'percent'
      address: '3/3/4'
    - platform: eliqonline
-     access_token: 95eda08cd4024210a3480366cec30c39
+     access_token: !secret eliq_token
      channel_id: 28
      name: eliq
 
