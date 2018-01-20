@@ -130,6 +130,8 @@ secrets.yaml
 
 google_calendars.yaml
 
+*.jpg
+
 components
 
 deps
