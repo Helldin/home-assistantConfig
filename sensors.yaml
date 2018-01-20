@@ -232,7 +232,7 @@
 
 
    - platform: darksky
-     api_key: 34bca6143dc61577cb1874d298eaecd1
+     api_key: !secret darksky_api
      forecast:
        - 1
        - 2
