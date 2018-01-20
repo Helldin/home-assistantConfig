@@ -152,6 +152,12 @@ dlib_known_faces
 
 dlib_unknown_faces
 
+Backup
+
 .cloud
+
+._home-assistant_v2.db-shm
+
+*.DS_Store 
 
 appdaemon.yaml
