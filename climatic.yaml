@@ -1,0 +1,35 @@
+####CLIMAT
+#Badrum
+   - platform: knx
+     name: badrum_temp
+     temperature_address: '3/1/7'
+     setpoint_address: '3/2/7'
+     target_temperature_address: '3/6/9'
+     operation_mode_address: '3/4/7'
+     setpoint_shift_address: '3/6/16'
+     setpoint_shift_state_address: '3/6/17'
+#Entre
+   - platform: knx
+     name: entre_temp
+     temperature_address: '3/1/5'
+     target_temperature_address: '3/5/9'
+     operation_mode_address: '3/4/5'
+     setpoint_shift_address: '3/5/12'
+     setpoint_shift_state_address: '3/5/11'
+#Hall
+   - platform: knx
+     name: hall_temp
+     temperature_address: '3/1/0'
+     target_temperature_address: '3/6/10'
+     operation_mode_address: '3/4/0'
+     setpoint_shift_address: '3/6/12'
+     setpoint_shift_state_address: '3/6/13'
+#Vardagsrum
+   - platform: knx
+     name: vardagsrum_temp
+     temperature_address: '3/1/6'
+     setpoint_address: '3/2/6'
+     target_temperature_address: '3/6/11'
+     operation_mode_address: '3/4/6'
+     setpoint_shift_address: '3/6/14'
+     setpoint_shift_state_address: '3/6/15'

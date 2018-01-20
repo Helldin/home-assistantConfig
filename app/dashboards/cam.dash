@@ -1,0 +1,38 @@
+title: Cam Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+entre_cam:
+    widget_type: camera
+    title: Entre
+    refresh: 1
+    frame_style: ""
+    entity_picture: http://192.168.1.121:8123/api/camera_proxy/camera.cam_entre?api_password=hell17
+
+altan_cam:
+    widget_type: camera
+    title: Altan
+    refresh: 1
+    frame_style: ""
+    entity_picture: http://192.168.1.121:8123/api/camera_proxy/camera.cam_altan?api_password=hell17
+
+parkering_cam:
+    widget_type: camera
+    title: Parkering
+    refresh: 1
+    frame_style: ""
+    entity_picture: http://192.168.1.121:8123/api/camera_proxy/camera.cam_parkering?api_password=hell17
+
+layout:
+    - entre_cam(4x3), parkering_cam(4x3)
+    -
+    -
+    - altan_cam(4x3)
+    -
+    - include: botten

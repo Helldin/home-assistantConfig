@@ -1,0 +1,24 @@
+  - platform: hue
+    host: 192.168.1.193
+
+#Hall spottar DIM---------
+  - platform: knx
+    address: '1/1/4'
+    state_address: '1/4/6'
+    brightness_address: '1/3/13'
+    name: Hall_Spottar
+#Badrum  DIM-------------
+  - platform: knx
+    address: '1/1/3'
+    state_address: '1/4/3'
+    brightness_address: '1/3/2'
+#    brightness_state_address: 1/2/2
+    name: badrum_spottar
+
+#Altantak DIM--------
+  - platform: knx
+    name: altantak
+    address: '1/1/5'
+    state_address: '1/4/7'
+    brightness_address: '1/3/3'
+#    brightness_state_address: 1/2/4

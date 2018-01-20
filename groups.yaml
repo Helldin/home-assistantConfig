@@ -1,0 +1,214 @@
+
+####################################################################################
+
+#                                                                                  #
+
+#                                                                                  #
+
+#                                GROUPS                                            #
+
+#                                                                                  #
+
+#                                                                                  #
+
+####################################################################################
+
+hus:
+  entities:
+    - sensor.eliq
+    - sensor.Produktion
+    - sensor.tute
+    - sensor.dark_sky_icon
+    - sensor.dark_sky_cloud_coverage
+    - sensor.dark_sky_wind_speed
+    - sensor.dark_sky_precip
+    - sun.sun
+hall_belysning:
+    control: hidden
+    entities:
+     - switch.hall
+     - light.Hall_Spottar
+
+badrum_belysning:
+
+    entities:
+     - light.badrum_spottar
+
+
+tank_temp:
+
+    entities:
+     - history_graph.ackumulatortank
+
+altan_tak:
+    control: hidden
+    entities:
+     - light.altantak
+     - media_player.tradgard
+
+floor_temp:
+
+    entities:
+     - switch.pump_golv
+     - sensor.tofloor
+     - sensor.fromfloor
+     - history_graph.golvvarme
+Ute:
+    control: hidden
+    entities:
+     - switch.fontan
+     - switch.entre_ute
+     - light.altantak
+     - light.garage_framsida
+     - light.garageuppfart
+     - light.garage_baksida
+
+Larm:
+    entities:
+     - alarm_control_panel.duvesjon_374
+     - binary_sensor.brand_vardagsrum
+     - binary_sensor.entre
+     - binary_sensor.hall
+     - binary_sensor.vardagsrum
+     - binary_sensor.badrum_motion
+     - sensor.template_last_motion
+auto:
+    entities:
+     - automation.hemma_cicci
+     - automation.hemma_johan
+     - automation.notify_belysning_ute
+     - automation.notify_belysning_ute2
+     - automation.notify_entre_ute
+     - automation.notify_larm
+     - automation.solnedgang
+     - automation.soluppgang
+     - automation.stanger_av_fontanen
+     - automation.startar_av_fontanen
+     - automation.update_available_notification
+     - automation.notify_ios_buss
+temp_hus:
+   entities:
+     - climate.entre_temp
+     - climate.hall_temp
+     - climate.vardagsrum_temp
+     - climate.badrum_temp
+familj:
+  entities:
+      - device_tracker.cecilias_iphone
+      - device_tracker.johans_iphone
+      - device_tracker.homeassistant_max
+#robot:
+#      name: Gräsklipparen
+#      entities:
+#      - vacuum.snigeln
+#      - device_tracker.automower_g_142301639164510233
+
+#      - sensor.mower_mode
+####################################################################################
+
+#                                                                                  #
+
+#                                                                                  #
+
+#                                VIEWS                                             #
+
+#                                                                                  #
+
+#                                                                                  #
+
+####################################################################################
+
+
+
+default_view:
+
+  view: yes
+  icon: mdi:home
+  entities:
+    - device_tracker.cecilias_iphone
+    - device_tracker.johans_iphone
+    - device_tracker.homeassistant_max
+#    - vacuum.snigeln
+#    - device_tracker.automower_g_142301639164510233
+    - group.hus
+    - group.hall_belysning
+    - group.ute
+#    - group.robot
+    - alarm_control_panel.duvesjon_374
+    - persistent_notification.1111
+    - persistent_notification.2222
+
+
+
+
+Hus:
+
+  name: Hus
+
+  view: yes
+
+  entities:
+    - sensor.temp_entre
+    - sensor.temp_hall
+    - group.hall_belysning
+    - sensor.temp_badrum
+    - sensor.badrum_lux
+    - group.badrum_belysning
+    - group.altan_tak
+    - media_player.trädgård
+    - sensor.temp_vrom
+
+Vardagsrumtab:
+
+  name: Media
+
+  view: yes
+
+  entities:
+    - media_player.tv
+    - media_player.avr
+    - media_player.vardagsrum
+    - media_player.kok
+    - media_player.spotify
+
+cameratab:
+
+  name: Kamera
+
+  view: yes
+  icon: mdi:camera
+
+  entities:
+
+    - camera.cam_entre
+    - binary_sensor.cam_entre_vmd3_0
+    - binary_sensor.cam_altan_motion_0
+    - camera.cam_altan
+    - camera.cam_parkering
+    - camera.cam_garage
+
+settingstab:
+
+  name: Inställningar
+
+  view: yes
+  icon: mdi:settings
+
+  entities:
+   - group.temp_hus
+   - group.Larm
+   - group.floor_sensor
+   - group.tank_temp
+   - group.floor_temp
+   - history_graph.elmatare
+
+
+autotab:
+
+  name: Autmoatisering
+
+  view: yes
+
+  entities:
+
+   - group.auto

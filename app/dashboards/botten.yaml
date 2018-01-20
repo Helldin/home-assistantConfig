@@ -1,0 +1,18 @@
+load_main_panel:
+    widget_type: navigate
+    icon_inactive: fa-home
+    dashboard: start
+
+load_cam_panel:
+    widget_type: navigate
+    icon_inactive: fa-camera
+    dashboard: cam
+
+load_stats_panel:
+    widget_type: navigate
+    icon_inactive: fa-area-chart
+    dashboard: stats
+
+
+layout:
+    - load_main_panel(1x1), load_cam_panel(1x1), load_stats_panel(1x1)

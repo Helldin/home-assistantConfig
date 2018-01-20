@@ -1,0 +1,7 @@
+#- name: Fontan
+#  entities:
+#    light.fontan_rgb:
+#      state: on
+#      brightness: 170
+#      rgb_color: [173,124,56]
+#      color_temp: 445

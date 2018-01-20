@@ -1,0 +1,30 @@
+#fontän----------------
+  - platform: knx
+    name: fontan
+    address: '1/1/18'
+#    state_address: 1/4/18
+#golvvärmepump------------------
+  - platform: knx
+    name: pump_golv
+    address: '3/4/8'
+#    state_address: 3/4/10
+#Ute-------------------------
+  - platform: knx
+    name: Entre_Ute
+    address: '1/0/11'
+    state_address: 1/0/11
+#Hall----------------------------
+  - platform: knx
+    address: '1/1/0'
+#    state_address: 1/4/0
+    name: Hall
+
+  - platform: knx
+    address: '3/5/3'
+#    state_address: 1/4/0
+    name: Sonos_altan_play
+
+  - platform: knx
+    address: '3/5/5'
+#    state_address: 1/4/0
+    name: Sonos_altan_status

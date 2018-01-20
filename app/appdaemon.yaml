@@ -1,0 +1,15 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  logsize: 100000
+  log_generations: 3
+  threads: 10
+  api_port: 5000
+HASS:
+  ha_url: http://192.168.1.121:8123
+  ha_key: hell17
+HADashboard:
+  dash_force_compile: 1
+  dash_compile_on_start: 1
+  dash_url: http://192.168.1.121:5050
+  dash_dir: /home/johan/.homeassistant/app/dashboards/

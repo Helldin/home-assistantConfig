@@ -1,0 +1,293 @@
+- id: sun_rise
+  alias: Soluppgång
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: +00:00:00
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.Entre_Ute
+  - delay: 00:00:05
+  - service: light.turn_off
+    entity_id:
+    - light.altantak
+    - light.garage_baksida
+    - light.garage_framsida
+    - light.garageuppfart
+  - service: persistent_notification.create
+    data:
+      message: Entre Ute {{ states('switch.Entre_Ute') }}
+      title: Entre Ute
+      notification_id: '1111'
+  - service: notify.ios_johans_iphone
+    data:
+      message: Entre Ute {{ states('switch.Entre_Ute') }}
+      title: Entre Ute
+- id: sun_set
+  alias: Solnedgång
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -00:30:00
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.Entre_Ute
+  - service: light.turn_on
+    entity_id:
+    - light.garage_baksida
+    - light.garage_framsida
+    - light.garageuppfart
+    data:
+      brightness_pct: 75
+  - service: light.turn_on
+    entity_id:
+    - light.altantak
+    data:
+      brightness_pct: 10
+  - service: persistent_notification.create
+    data:
+      message: Entre Ute {{ states('switch.Entre_Ute') }}
+      title: Entre Ute
+      notification_id: '1111'
+  - service: notify.ios_johans_iphone
+    data:
+      message: Entre Ute {{ states('switch.Entre_Ute') }}
+      title: Entre Ute
+- id: off_fontan
+  alias: Stänger av fontänen
+  trigger:
+    platform: time
+    at: '23:30:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.Fontan
+  - delay: 00:00:05
+  - service: persistent_notification.create
+    data:
+      message: Fontän {{ states('switch.Fontan') }}
+      title: Fontän
+      notification_id: '1111'
+  - service: notify.ios_johans_iphone
+    data:
+      message: Fontän {{ states('switch.Fontan') }}
+      title: Fontän
+- id: on_fontan
+  alias: Startar av fontänen
+  trigger:
+    platform: time
+    at: 06:30:00
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.Fontan
+  - delay: 00:00:05
+  - service: persistent_notification.create
+    data:
+      message: Fontän {{ states('switch.Fontan') }}
+      title: Fontän
+      notification_id: '1111'
+  - service: notify.ios_johans_iphone
+    data:
+      message: Fontän {{ states('switch.Fontan') }}
+      title: Fontän
+- id: notufy_alarm
+  alias: Notify Larm
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.duvesjon_374
+  action:
+  - service: notify.ios_johans_iphone
+    data:
+      message: Larmet är {{ states('alarm_control_panel.duvesjon_374') }}
+      title: Larm
+- id: home_johan
+  alias: Hemma johan
+  trigger:
+    platform: state
+    entity_id: device_tracker.johans_iphone
+  action:
+  - service: notify.ios_johans_iphone
+    data:
+      message: Johan {{ states('device_tracker.johans_iphone') }}
+      title: Hemma
+- id: home_cicci
+  alias: Hemma cicci
+  trigger:
+    platform: state
+    entity_id: device_tracker.cecilias_iphone
+  action:
+  - service: notify.ios_johans_iphone
+    data:
+      message: Cicci {{ states('device_tracker.cecilias_iphone') }}
+      title: Hemma
+- id: home_max
+  alias: Hemma Max
+  trigger:
+    platform: state
+    entity_id: device_tracker.homeassistant_max
+  action:
+  - service: notify.notify_jc
+    data:
+      message: Max {{ states('device_tracker.homeassistant_max') }}
+      title: Hemma
+- id: new_update
+  alias: Update Available Notification
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+  - service: notify.ios_johans_iphone
+    data:
+      message: HomeAssistant {{ states('updater.updater') }} is now available
+      title: Update HASS
+  - service: persistent_notification.create
+    data:
+      message: HomeAssistant {{ states('updater.updater') }} är nu tillgänglig
+      title: HomeAssistant
+      notification_id: '2222'
+- id: sonos_say
+  alias: Sonos Say
+  trigger:
+    platform: state
+    entity_id: alarm_control_panel.duvesjon_374
+  action:
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.kok
+      volume: 0.4
+      message: Välkommen hem
+- alias: Sonos Play ON
+  trigger:
+    platform: state
+    entity_id: switch.Sonos_altan_play
+    from: 'off'
+    to: 'on'
+  action:
+  - service: media_player.media_play
+    entity_id: media_player.tradgard
+- alias: Sonos Play OFF
+  trigger:
+    platform: state
+    entity_id: switch.Sonos_altan_play
+    from: 'on'
+    to: 'off'
+  action:
+  - service: media_player.media_pause
+    entity_id: media_player.tradgard
+- alias: Sonos Status playing
+  trigger:
+    platform: state
+    entity_id: media_player.tradgard
+    to: playing
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.Sonos_altan_status
+- alias: Sonos Status paused
+  trigger:
+    platform: state
+    entity_id: media_player.tradgard
+    to: paused
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.Sonos_altan_status
+- id: light_out_on
+  alias: Belysning ute tänds
+  trigger:
+    platform: state
+    entity_id: switch.entre_ute
+    to: 'on'
+  action:
+  - service: light.turn_on
+    entity_id:
+    - light.garage_baksida
+    - light.garage_framsida
+    - light.garageuppfart
+  - delay: 00:00:10
+  - service: light.hue_activate_scene
+    data:
+      group_name: Fontän
+      scene_name: 'On'
+- id: light_out_off
+  alias: Belysning ute släks
+  trigger:
+    platform: state
+    entity_id: switch.entre_ute
+    to: 'off'
+  action:
+  - delay: 00:00:2
+  - service: light.turn_off
+    entity_id:
+    - light.garage_baksida
+    - light.garage_framsida
+    - light.garageuppfart
+- id: alarme_chage
+  alias: Alarm status changed
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.duvesjon_374
+  action:
+  - service: notify.ios_johans_iphone
+    data_template:
+      message: 'Larmet ändrad från {{ trigger.from_state.state }} till {{ trigger.to_state.state
+        }} av {{ trigger.to_state.attributes.changed_by }}
+
+        '
+- id: montion_entre
+  alias: Motion Entre
+  trigger:
+  - entity_id: binary_sensor.cam_entre_vmd3_0
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      data:
+        attachment:
+          content-type: jpeg
+          push:
+            category: camera
+            entity_id: camera.cam_entre
+      message: Rörelse entre
+    service: notify.ios_johans_iphone
+- id: motion_altan
+  alias: Motion Altan
+  trigger:
+    platform: state
+    entity_id: binary_sensor.cam_altan_motion_0
+    to: 'on'
+  action:
+    service: notify.ios_johans_iphone
+    data:
+      message: Rörelse Altan
+      data:
+        attachment:
+          content-type: jpeg
+          push:
+            category: camera
+            entity_id: camera.cam_altan
+- id: disable_alarm
+  alias: Disable Alarm
+  trigger:
+  - entity_id: group.familj
+    platform: state
+    to: home
+  action:
+  - entity_id: alarm_control_panel.duvesjon_374
+    service: alarm_control_panel.alarm_disarm
+  - data:
+      message: Larmet är nu avaktiverat
+      title: Huset
+    service: notify.notify_jc
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.duvesjon_374
+    state: armed_away
+- id: sonos_max
+  alias: Sonos max buss
+  trigger:
+    platform: time
+    at: 07:35:00
+  action:
+  - service: script.sonos_say
+    data:
+      sonos_entity: media_player.kok
+      volume: 0.7
+      message: Max du måste gå till bussen nu

@@ -1,0 +1,260 @@
+   - platform: google_travel_time
+     name: restid_j
+     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     origin: device_tracker.homeassistant_johan
+     destination: zone.home
+   - platform: google_travel_time
+     name: restid_c
+     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     origin: device_tracker.homeassistant_cicci
+     destination: zone.home
+   - platform: google_travel_time
+     name: restid_m
+     api_key: AIzaSyCiJGUGuXRmsrFjoSWYXrNIQKQ2Yc50b8c
+     origin: device_tracker.homeassistant_max
+     destination: zone.home
+
+#Väder
+#   - platform: yr
+#     monitored_conditions:
+#       - temperature
+#       - symbol
+#       - precipitation
+#       - windSpeed
+#       - pressure
+#       - lowClouds
+#       - mediumClouds
+#       - highClouds
+#       - cloudiness
+#
+
+# Temp
+   - platform: knx
+     type: 'temperature'
+     name: temp_entre
+     address: '3/1/5'
+   - platform: knx
+     type: 'temperature'
+     name: temp_vrom
+     address: '3/1/6'
+   - platform: knx
+     type: 'temperature'
+     name: tute
+     address: '3/5/0'
+   - platform: knx
+     type: 'temperature'
+     name: temp_badrum
+     address: '3/1/7'
+   - platform: knx
+     type: 'temperature'
+     name: temp_hall
+     address: '3/1/0'
+   - platform: knx
+     type: 'temperature'
+     name: tank_topp
+     address: '3/1/15'
+   - platform: knx
+     type: 'temperature'
+     name: tank_mitt
+     address: '3/1/16'
+   - platform: knx
+     type: 'temperature'
+     name: tank_bott
+     address: '3/1/17'
+   - platform: knx
+     type: 'temperature'
+     name: tank_sol
+     address: '3/1/9'
+
+#   - platform: knx
+#     name: badrum_lux
+#     type: illuminance
+#     address: '1/5/2'
+#
+#
+
+   - platform: knx
+     type: 'temperature'
+     name: tofloor
+     address: '3/1/13'
+   - platform: knx
+     type: 'temperature'
+     name: fromfloor
+     address: '3/1/14'
+
+
+#Procent
+   - platform: knx
+     name: percent_golv_max
+     type: 'percent'
+     address: '3/3/8'
+   - platform: knx
+     name: percent_golv_vrom
+     type: 'percent'
+     address: '3/3/6'
+   - platform: knx
+     name: percent_golv_hall
+     type: 'percent'
+     address: '3/3/5'
+   - platform: knx
+     name: percent_golv_badrum
+     type: 'percent'
+     address: '3/3/7'
+   - platform: knx
+     name: percent_golv_sovrum
+     type: 'percent'
+     address: '3/3/4'
+   - platform: eliqonline
+     access_token: 95eda08cd4024210a3480366cec30c39
+     channel_id: 28
+     name: eliq
+
+#Produktion
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceId=1&DataCollection=CommonInverterData
+     name: "Produktion"
+     value_template: '{{ value_json.Body.Data.PAC.Value | int }}'
+     unit_of_measurement: 'W'
+#Produktion per dag
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceId=1&DataCollection=CommonInverterData
+     name: "Produktion dag"
+     value_template: '{{ value_json.Body.Data.DAY_ENERGY.Value /1000 | int }}'
+     unit_of_measurement: 'kWh'
+#Produktion per år
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceId=1&DataCollection=CommonInverterData
+     name: "Årsproduktion"
+     value_template: '{{ value_json.Body.Data.YEAR_ENERGY.Value /1000 | int }}'
+     unit_of_measurement: 'kWh'
+#Volt L1
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "V1"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_Phase_1 | int }}'
+     unit_of_measurement: 'V'
+#Volt L2
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "V2"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_Phase_2 | int }}'
+     unit_of_measurement: 'V'
+#Volt L3
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "V3"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_Phase_3 | int }}'
+     unit_of_measurement: 'V'
+#Volt L1 - L2
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "VL1-L2"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_PhaseToPhase_12 | int }}'
+     unit_of_measurement: 'V'
+#Volt L2 - L3
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "VL2-L3"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_PhaseToPhase_23 | int }}'
+     unit_of_measurement: 'V'
+#Volt L1 - L3
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "VL1-L3"
+     value_template: '{{ value_json.Body.Data.Voltage_AC_PhaseToPhase_31 | int }}'
+     unit_of_measurement: 'V'
+#Watt L1
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "WattL1"
+     value_template: '{{ value_json.Body.Data.PowerReal_P_Phase_1 | int }}'
+     unit_of_measurement: 'W'
+#Watt L2
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "WattL2"
+     value_template: '{{ value_json.Body.Data.PowerReal_P_Phase_2 | int }}'
+     unit_of_measurement: 'W'
+#Watt L3
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "WattL3"
+     value_template: '{{ value_json.Body.Data.PowerReal_P_Phase_3 | int }}'
+     unit_of_measurement: 'W'
+#A L1
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "AL1"
+     value_template: '{{ value_json.Body.Data.Current_AC_Phase_1 | int }}'
+     unit_of_measurement: 'A'
+#A L2
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "AL2"
+     value_template: '{{ value_json.Body.Data.Current_AC_Phase_2 | int }}'
+     unit_of_measurement: 'A'
+#A L3
+   - platform: rest
+     resource: http://192.168.1.195/solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&DeviceId=0
+     name: "AL3"
+     value_template: '{{ value_json.Body.Data.Current_AC_Phase_3  | int }}'
+     unit_of_measurement: 'A'
+#Automover operatingMode
+#   - platform: command_line
+#     name: Mower_status
+#     command: python3 -c "import requests; print(requests.get('http://localhost:2345/status').json()['mowerStatus'])"
+#
+#   - platform: command_line
+#     name: Mower_mode
+#     command: python3 -c "import requests; print(requests.get('http://localhost:2345/status').json()['operatingMode'])"
+#
+#   - platform: command_line
+#     name: Mower_battery
+#     command: python3 -c "import requests; print(requests.get('http://localhost:2345/status').json()['batteryPercent'])"
+#     unit_of_measurement: "%"
+#
+#   - platform: command_line
+#     name: Mower_next_start
+#     command: python3 -c "import requests; print(requests.get('http://localhost:2345/status').json()['nextStartTimestamp'])"
+#     value_template: '{{ value_json | timestamp_utc }}'
+
+   - platform: template
+     sensors:
+       template_last_motion:
+         friendly_name: 'Last Motion'
+         value_template: >
+           {%- set sensors = [states.binary_sensor.hall, states.binary_sensor.badrum_motion, states.binary_sensor.entre, states.binary_sensor.vardagsrum] %}
+           {% for sensor in sensors %}
+             {% if as_timestamp(sensor.last_changed) == as_timestamp(sensors | map(attribute='last_changed') | max) %}
+               {{ sensor.name }}
+             {% endif %}
+           {% endfor %}
+
+
+   - platform: darksky
+     api_key: 34bca6143dc61577cb1874d298eaecd1
+     forecast:
+       - 1
+       - 2
+     monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature_max
+      - temperature_min

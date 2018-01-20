@@ -1,0 +1,180 @@
+
+################
+#    KNX
+################
+   switch.Entre_Ute:
+#    custom_ui_state_card: custom-ui
+    friendly_name: 'Entre Ute'
+    icon: 'mdi:lightbulb'
+
+   switch.Fontan:
+#    custom_ui_state_card: custom-ui
+    friendly_name: 'Fontän'
+    icon: 'mdi:wifi'
+
+   light.Hall_Spottar:
+#    custom_ui_state_card: custom-ui
+    friendly_name: 'Hall spottar'
+    icon: 'mdi:spotlight-beam'
+#    state_card_mode: break-slider
+#    stretch_slider: true
+#    slider_theme:
+#     min: 0
+#     max: 255
+#     pin: true
+
+   light.badrum_spottar:
+#    custom_ui_state_card: custom-ui
+#    state_card_mode: break-slider
+#    stretch_slider: true
+    friendly_name: 'Badrum spottar'
+    icon: 'mdi:spotlight-beam'
+#    slider_theme:
+#     min: 0
+#     max: 255
+#     pin: true
+
+   light.altantak:
+#    custom_ui_state_card: custom-ui
+#    stretch_slider: true
+    friendly_name: 'Altantak'
+    icon: 'mdi:spotlight-beam'
+#    slider_theme:
+#     min: 0
+#     max: 255
+#     pin: true
+
+   sensor.tute:
+    friendly_name: 'Utomhustempratur'
+
+   climate.vardagsrum_temp:
+     friendly_name: 'Vardagsrum'
+#     custom_ui_state_card: custom-ui
+
+   climate.entre_temp:
+     friendly_name: 'Entre'
+#     custom_ui_state_card: custom-ui
+
+   climate.hall_temp:
+     friendly_name: 'Hall'
+#     custom_ui_state_card: custom-ui
+
+   climate.badrum_temp:
+     friendly_name: 'Badrum'
+#     custom_ui_state_card: custom-ui
+
+#tank
+
+   sensor.tank_topp:
+    friendly_name: 'Övre'
+   sensor.tank_mitt:
+    friendly_name: 'Mitten'
+   sensor.tank_bott:
+    friendly_name: 'Nere'
+   sensor.tank_sol:
+    friendly_name: 'Solvärme'
+#Golvvärme
+   sensor.percent_golv_hall:
+    friendly_name: 'Hall'
+   sensor.percent_golv_vrom:
+    friendly_name: 'Vardagsrum'
+   sensor.percent_golv_badrum:
+    friendly_name: 'Badrum'
+   sensor.percent_golv_sovrum:
+    friendly_name: 'Sovrum'
+   sensor.percent_golv_max:
+    friendly_name: 'Max alla'
+   sensor.tofloor:
+    friendly_name: 'Till golvvärme'
+   sensor.fromfloor:
+    friendly_name: 'Från golvvärme'
+   switch.pump_golv:
+     friendly_name: 'Cirkulationspump'
+#Larm
+   binary_sensor.hall:
+    device_class: motion
+    hidden: false
+
+   binary_sensor.brand_vardagsrum:
+    device_class: smoke
+    hidden: false
+
+   binary_sensor.entre:
+    hidden: false
+
+   binary_sensor.vardagsrum:
+    hidden: false
+    device_class: motion
+
+   binary_sensor.badrum_motion:
+     device_class: motion
+     friendly_name: 'Badrum'
+
+   sensor.restid_j:
+    friendly_name: 'Johans restid hem'
+   sensor.restid_c:
+    friendly_name: 'Ciccis restid hem'
+   sensor.restid_m:
+    friendly_name: 'Max restid hem'
+#-------CAM------
+   camera.cam_entre:
+    friendly_name: 'Entre'
+   camera.cam_parkering:
+    friendly_name: 'Parkering'
+################
+#    Grupp
+################
+   group.hall_belysning:
+    friendly_name: 'Hallbelysning'
+    icon: 'mdi:ceiling-light'
+   group.ute:
+    friendly_name: 'Utomhus'
+    icon: 'mdi:garden'
+   group.badrum_belysning:
+    friendly_name: 'Badrumbelysning'
+    icon: 'mdi:spotlight-beam'
+   group.hus:
+    friendly_name: 'Duvesjön'
+    icon: 'mdi:home'
+   group.altan_tak:
+    friendly_name: 'Altan'
+    icon: 'mdi:home'
+
+   group.tank_temp:
+    friendly_name: 'Tempratur i tanken'
+    icon: 'mdi:temp'
+
+   group.floor_temp:
+    friendly_name: 'Golvvärme'
+    icon: 'mdi:temp'
+
+#   binary_sensor.floorplan:
+#    custom_ui_state_card: floorplan
+#    config: !include floorplan.yaml
+#--Gräsklipparen
+   sensor.mower_status:
+    friendly_name: 'Status'
+   sensor.mower_battery:
+    icon: 'mdi:battery-charging'
+    friendly_name: 'Batteri'
+   sensor.mower_next_start:
+    friendly_name: 'Nästa start'
+    icon: 'mdi:timer'
+   sensor.mower_mode:
+    friendly_name: 'Läge'
+    icon: 'mdi:autorenew'
+#väder-----
+   sensor.dark_sky_icon:
+    friendly_name: 'Väder'
+   sensor.dark_sky_cloud_coverage:
+    friendly_name: 'Moln'
+    icon: 'mdi:cloud'
+   sensor.dark_sky_wind_speed:
+    friendly_name: 'Vindhastighet'
+    icon: 'mdi:weather-windy-variant'
+   sensor.dark_sky_precip:
+    friendly_name: 'Regn'
+    icon: 'mdi:weather-rainy'
+
+   sensor.eliq:
+     friendly_name: 'Strömförbrukning'

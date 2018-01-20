@@ -1,0 +1,3 @@
+groups:
+    time:
+        General.Time: {group_address: '3/5/6'}

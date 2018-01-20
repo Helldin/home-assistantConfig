@@ -1,0 +1,106 @@
+clock:
+        widget_type: clock
+        time_format: 24hr
+
+weather:
+        widget_type: weather
+        units: "&deg;C"
+
+out_temperature:
+        widget_type: sensor
+        title: Temperature
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tute
+
+el_forbrukning:
+        widget_type: sensor
+        title: Förbrukning
+        max: 8000
+        min: 0
+        units: W
+        precision: 0
+        entity: sensor.eliq
+
+el_produktion:
+        widget_type: sensor
+        title: Produktion
+        precision: 0
+        units: W
+        entity: sensor.produktion
+        state_map:
+          "unknown": 0
+          "unavailable": 0
+
+label:
+    widget_type: label
+    text: Hello World
+
+johan:
+    widget_type: device_tracker
+    title: Johan
+    device: johans_iphone
+    state_map:
+        "not_home": Borta
+        "home": Hemma
+
+cicci:
+    widget_type: device_tracker
+    title: Cecilia
+    device: cecilias_iphone
+    state_map:
+        "not_home": Borta
+        "home": Hemma
+
+max:
+    widget_type: device_tracker
+    title: Max
+    device: homeassistant_max
+    state_map:
+        "not_home": Borta
+        "home": Hemma
+
+
+klimat_entre:
+    widget_type: climate
+    title: Entre
+    entity: climate.entre_temp
+
+klimat_hall:
+    widget_type: climate
+    title: Hall
+    entity: climate.hall_temp
+
+klimat_vardagsrum:
+    widget_type: climate
+    title: Vardagsrum
+    entity: climate.vardagsrum_temp
+
+klimat_badrum:
+    widget_type: climate
+    title: Badrum
+    entity: climate.badrum_temp
+
+
+light_hall_spott:
+    widget_type: light
+    entity: light.hall_spottar
+    title: Hall spott
+light_hall:
+    widget_type: light
+    entity: switch.hall
+    title: Hall
+light_ute:
+    widget_type: light
+    entity: switch.entre_ute
+    title: Ute
+larm:
+    widget_type: alarm
+    entity: alarm_control_panel.duvesjon_374
+    title: Hus
+
+layout:
+    - clock(2x1), out_temperature(1x1), el_forbrukning, el_produktion(1x1), larm(1x1)
+    - johan(1x1), cicci(1x1), max(1x1), weather(2x2)
+    - light_hall(1x1), light_hall_spott(1x1), light_ute(1x1)
+    - klimat_entre(1x1), klimat_hall(1x1), klimat_vardagsrum(1x1), klimat_badrum(1x1)

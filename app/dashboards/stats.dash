@@ -1,0 +1,58 @@
+title: Cam Panel
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+    use_comma: 0
+    precision: 1
+    use_hass_icon: 1
+
+top_temperature:
+        widget_type: sensor
+        title: Över
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tank_topp
+
+mitt_temperature:
+        widget_type: sensor
+        title: Mitten
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tank_mitt
+
+botten_temperature:
+        widget_type: sensor
+        title: Botten
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tank_bott
+sol_temperature:
+        widget_type: sensor
+        title: Sol
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tank_sol
+
+to_floortemperature:
+        widget_type: sensor
+        title: Till golvvärme
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.tofloor
+from_floortemperature:
+        widget_type: sensor
+        title: Från golvvärme
+        units: "&deg;C"
+        precision: 0
+        entity: sensor.fromfloor
+
+
+layout:
+    - top_temperature(1x1), to_floortemperature(1x1)
+    - mitt_temperature(1x1), from_floortemperature(1x1)
+    - botten_temperature(1x1)
+    - sol_temperature(1x1)
+    -
+    - include: botten

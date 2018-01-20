@@ -1,0 +1,182 @@
+homeassistant:
+     name: Duvesjön 374
+     latitude: !secret home_lat
+     longitude: !secret home_lon
+     elevation: 76
+     unit_system: metric
+     time_zone: Europe/Stockholm
+     customize: !include customized.yaml
+#     customize_glob:
+#       light.*:
+#         custom_ui_state_card: custom-ui
+#       cover.*:
+#         custom_ui_state_card: custom-ui
+#       switch.*:
+#         custom_ui_state_card: custom-ui
+frontend:
+#    themes:
+#     default:
+#      primary-color: #C9A89D
+
+config:
+sun:
+ios:
+map:
+http:
+     api_password: !secret http_password
+     base_url: !secret base_url
+
+updater:
+discovery:
+#shopping_list:
+  ignore:
+    - axis
+    - plex_mediaserver
+conversation:
+history:
+logbook:
+
+#logger:
+#  default: info
+
+
+media_player:
+  - platform: sonos
+  - platform: samsungtv
+    host: 192.168.1.130
+    port: 8001
+    name: tv
+
+  - platform: denonavr
+    host: 192.168.1.206
+    name: Avr
+    show_all_sources: True
+
+  - platform: spotify
+    client_id: !secret spotift_id
+    client_secret: !secret spotify_secret
+
+tts:
+    - platform: google
+      language: 'sv'
+      cache_dir: /home/johan/.homeassistant/tts
+      time_memory: 300
+
+knx:
+  config_file: xknx.yaml
+  routing:
+     local_ip: '192.168.1.121'
+
+
+#Automower
+automower:
+    username: !secret automover_username
+    password: !secret automover_password
+
+#camera:
+#  - platform: mjpeg
+#    mjpeg_url: http://192.168.1.31/axis-cgi/mjpg/video.cgi
+#    name: cam_entre
+#  - platform: mjpeg
+#    mjpeg_url: http://192.168.1.225/axis-cgi/mjpg/video.cgi
+#    name: cam_parkering
+
+
+spc:
+  api_url: http://192.168.1.121:8088/
+  ws_url: ws://192.168.1.121:8088/
+
+axis:
+  cam_entre:
+    host: 192.168.1.31
+    username: !secret axis_username
+    password: !secret axis_password
+    include:
+    - camera
+    trigger_time: 0
+    location: Entre
+  cam_parkering:
+    host: 192.168.1.33
+    username: !secret axis_username
+    password: !secret axis_password
+    include:
+    - camera
+    trigger_time: 0
+    location: Parkering
+  cam_garage:
+    host: 192.168.1.34
+    username: !secret axis_username
+    password: !secret axis_password
+    include:
+    - camera
+    trigger_time: 0
+    location: Parkering
+  cam_altan:
+    host: 192.168.1.32
+    username: !secret axis_username
+    password: !secret axis_password
+    include:
+    - camera
+    trigger_time: 0
+    location: Parkering
+
+notify:
+   - name: notify_ios
+     platform: group
+     services:
+       - service: ios_johans_iphone
+
+
+device_tracker:
+   - platform: unifi
+     host: 192.168.1.232
+     username: !secret unifi_username
+     password: !secret unifi_password
+     verify_ssl: false
+     track_new_devices: no
+   - platform: owntracks_http
+     max_gps_accuracy: 200
+     waypoints: True
+
+history_graph:
+  gr1:
+    name: Ackumulatortank
+    entities:
+      - sensor.tank_topp
+      - sensor.tank_mitt
+      - sensor.tank_bott
+      - sensor.tank_sol
+    hours_to_show: 24
+    refresh: 60
+  gr2:
+    name: Golvvärme
+    entities:
+      - sensor.percent_golv_max
+      - sensor.percent_golv_vrom
+      - sensor.percent_golv_hall
+      - sensor.percent_golv_badrum
+      - sensor.percent_golv_sovrum
+    hours_to_show: 24
+    refresh: 60
+  gr3:
+    name: Elmätare
+    entities:
+      - sensor.eliq
+      - sensor.produktion
+    hours_to_show: 24
+    refresh: 60
+
+binary_sensor:
+    - platform: knx
+      name: badrum_motion
+      address: '3/6/8'
+
+
+script: !include scripts.yaml
+scene: !include scene.yaml
+switch: !include switches.yaml
+light: !include light.yaml
+sensor: !include sensors.yaml
+climate: !include climatic.yaml
+automation: !include automations.yaml
+group: !include groups.yaml
